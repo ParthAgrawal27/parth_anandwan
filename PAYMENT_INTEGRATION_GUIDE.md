@@ -27,18 +27,14 @@ This guide will help you set up and run the Razorpay payment gateway integration
    - Maven installed
 
 2. **Create Database**
-   ```sql
-   CREATE DATABASE anandwan_payment;
-   ```
+   - The application is configured to use Supabase PostgreSQL
+   - Database connection is already configured in `application.properties`
+   - No manual database creation needed - Supabase handles this automatically
 
-3. **Update Database Credentials**
-   - File: `payment-backend/src/main/resources/application.properties`
-   - Update these values if needed:
-     ```properties
-     spring.datasource.url=jdbc:mysql://localhost:3306/anandwan_payment?useSSL=false&serverTimezone=UTC
-     spring.datasource.username=root
-     spring.datasource.password=root
-     ```
+3. **Database Configuration**
+   - The application uses Supabase PostgreSQL
+   - Connection details are pre-configured in `application.properties`
+   - No additional setup required
 
 4. **Configure Razorpay Credentials**
    - File: `payment-backend/src/main/resources/application.properties`
@@ -156,15 +152,15 @@ This guide will help you set up and run the Razorpay payment gateway integration
   }
   ```
 
-## 🗄️ Database Schema
+## 🗄️ Database Schema (PostgreSQL)
 
 ### payments table
 ```sql
 CREATE TABLE payments (
-  id BIGINT PRIMARY KEY AUTO_INCREMENT,
+  id BIGSERIAL PRIMARY KEY,
   order_id VARCHAR(255) UNIQUE NOT NULL,
   payment_id VARCHAR(255),
-  amount DOUBLE NOT NULL,
+  amount DOUBLE PRECISION NOT NULL,
   currency VARCHAR(10),
   donor_name VARCHAR(255),
   phone_number VARCHAR(20),
