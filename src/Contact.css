@@ -46,7 +46,7 @@
     justify-content: center;
     text-align: center;
     color: #fff;
-    background: url('') no-repeat center/cover;
+    background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
   }
   
   .hero-overlay {

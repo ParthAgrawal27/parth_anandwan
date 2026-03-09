@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './LeprosyAwarenessPage.css'; // Import the CSS file
 
 const LeprosyAwarenessPage = () => {
@@ -52,7 +53,7 @@ const LeprosyAwarenessPage = () => {
       <section className="cta-section">
         <h2>Support the Fight Against Leprosy</h2>
         <p>Spread awareness, support those affected, and help eliminate the stigma around leprosy.</p>
-        <a href="#" className="cta-button">Get Involved</a>
+        <Link to="/contact" className="cta-button">Get Involved</Link>
       </section>
     </div>
   );

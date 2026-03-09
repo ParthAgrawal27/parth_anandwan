@@ -1,11 +1,25 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './Fundraiser.css';
 
 function Fundraiser() {
+  const navigate = useNavigate();
   const goalAmount = 500000; // Example goal in INR
   const raisedAmount = 320000; // Example raised amount in INR
   const progress = (raisedAmount / goalAmount) * 100;
+
+  const handleDonation = (amount) => {
+    navigate('/billing', { state: { amount } });
+  };
+
+  const handleCustomDonation = (e) => {
+    const amount = parseInt(e.target.closest('.custom-donation').querySelector('input').value);
+    if (amount && amount > 0) {
+      navigate('/billing', { state: { amount } });
+    } else {
+      alert('Please enter a valid amount');
+    }
+  };
 
   return (
     <div className="fundraiser-page">
@@ -58,22 +72,22 @@ function Fundraiser() {
             <div className="donation-card">
               <h3>₹500</h3>
               <p>Provides medical supplies for one patient for a month.</p>
-              <button className="btn btn-donate-card">Donate</button>
+              <button className="btn btn-donate-card" onClick={() => handleDonation(500)}>Donate</button>
             </div>
             <div className="donation-card">
               <h3>₹1000</h3>
               <p>Funds vocational training for one individual.</p>
-              <button className="btn btn-donate-card">Donate</button>
+              <button className="btn btn-donate-card" onClick={() => handleDonation(1000)}>Donate</button>
             </div>
             <div className="donation-card">
               <h3>₹5000</h3>
-              <p>Supports a family’s livelihood for a month.</p>
-              <button className="btn btn-donate-card">Donate</button>
+              <p>Supports a family's livelihood for a month.</p>
+              <button className="btn btn-donate-card" onClick={() => handleDonation(5000)}>Donate</button>
             </div>
             <div className="donation-card custom-donation">
               <h3>Custom Amount</h3>
               <input type="number" placeholder="Enter amount (₹)" />
-              <button className="btn btn-donate-card">Donate</button>
+              <button className="btn btn-donate-card" onClick={handleCustomDonation}>Donate</button>
             </div>
           </div>
         </div>
